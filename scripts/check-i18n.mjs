@@ -218,6 +218,7 @@ const allowedIdenticalValuesByLanguage = {
     'Notifications', 'Important', 'Sections', 'Routines', 'Scripts', 'scripts', 'Total',
     'Sources', 'Radio', 'Conditions', 'Widget', 'Photos', 'pagination', 'Modes', 'charge',
     'Usage', 'source', 'Menu', 'Destination', 'Attention', 'Album', 'Orange', 'Type', 'Actions',
+    'Zone {count}', '{count} point', '{count} points',
   ]),
   es: new Set([
     'Experimental', 'Auto', 'Manual', 'Celsius', 'Fahrenheit', 'Error', 'Total', 'Radio',
@@ -239,7 +240,7 @@ const allowedIdenticalValuesByLanguage = {
     'Later', 'Updates', 'camera', 'Routines', 'Scripts', 'scripts', 'Recent', 'Fans',
     'Radio', 'Script', 'Helper', 'Camera', 'Triggers', 'Stop', 'Open {name}', 'Widget',
     'Info', 'Week', 'Eco', '{count} live', 'Album', 'Alarm', 'Comfort', 'Feeds', 'Gas',
-    'kW import', 'In Navet',
+    'kW import', 'In Navet', 'Zone {count}',
   ]),
   pl: new Set([
     'System',
@@ -275,6 +276,7 @@ const allowedIdenticalValuesByLanguage = {
     'Live stream', 'Stream', 'Snapshot fallback', 'info', 'Menu', 'Link', 'Peak', 'Normal',
     'Snapshots', 'Album', 'Alarm', 'Feeds', 'Orange', 'Neutral', 'Dim', 'Solar', 'Gas',
     '{value} kW import', '{count} live', '{count} normal', 'kW live', 'kW import',
+    'Zone {count}',
   ]),
   fi: new Set([
     'Auto', 'Celsius', 'Fahrenheit', 'Media', 'Soundbar', 'Max', 'tv', 'Radio', 'Widget',

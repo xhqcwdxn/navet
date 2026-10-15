@@ -27,6 +27,7 @@ import {
   Layers3,
   LayoutGrid,
   type Lightbulb,
+  Map as MapIcon,
   Plus,
   SlidersHorizontal,
 } from 'lucide-react';
@@ -74,6 +75,8 @@ interface RoomNavProps {
   onToggleEditMode: () => void;
   onAddEntity?: () => void;
   addEntityLabel?: string;
+  onOpenFloorplan?: () => void;
+  floorplanLabel?: string;
   suppressEditActions?: boolean;
   showCustomizeButton?: boolean;
 }
@@ -321,6 +324,8 @@ export const RoomNav = memo(function RoomNav({
   onToggleEditMode,
   onAddEntity,
   addEntityLabel = 'Add Entity',
+  onOpenFloorplan,
+  floorplanLabel = 'Floorplan',
   suppressEditActions = false,
   showCustomizeButton = true,
 }: RoomNavProps) {
@@ -730,6 +735,20 @@ export const RoomNav = memo(function RoomNav({
           </div>
 
           <div className="flex shrink-0 items-center gap-1.5 pl-1.5 md:gap-2 md:pl-2">
+            {onOpenFloorplan ? (
+              <InteractivePill
+                onClick={onOpenFloorplan}
+                intent="action"
+                size="small"
+                className={actionPillClassName}
+              >
+                <MapIcon className={`h-4 w-4 ${textSecondary}`} aria-hidden="true" />
+                <span className={`hidden text-sm font-medium md:inline ${textSecondary}`}>
+                  {floorplanLabel}
+                </span>
+              </InteractivePill>
+            ) : null}
+
             {isEditMode && showAllViewGrouping ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

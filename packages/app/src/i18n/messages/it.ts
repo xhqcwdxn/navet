@@ -3820,4 +3820,36 @@ export const itMessages = {
   'providerDetails.periods.month': 'Ultimi 31 giorni',
   'providerDetails.sections.installations': 'Homey disponibili',
   'providerDetails.current': 'Connessione attuale',
+  'dashboard.floorplan.open': 'Planimetria',
+  'dashboard.floorplan.title': 'Planimetria',
+  'dashboard.floorplan.description':
+    'Carica una planimetria, poi disegna le zone per assegnare automaticamente i dispositivi.',
+  'dashboard.floorplan.upload': 'Carica planimetria',
+  'dashboard.floorplan.empty.title': 'Aggiungi la tua planimetria',
+  'dashboard.floorplan.empty.description':
+    "Carica un'immagine della tua casa, poi posiziona i dispositivi su di essa.",
+  'dashboard.floorplan.image.invalid': 'Scegli un file immagine.',
+  'dashboard.floorplan.image.tooLarge':
+    'Questa immagine è troppo grande. Scegli un file più piccolo.',
+  'dashboard.floorplan.image.replace': 'Sostituisci immagine',
+  'dashboard.floorplan.image.remove': 'Rimuovi planimetria',
+  'dashboard.floorplan.mode.zones': 'Zone',
+  'dashboard.floorplan.mode.devices': 'Dispositivi',
+  'dashboard.floorplan.zones.description':
+    'Disegna un contorno attorno a ogni zona per collegarla a una stanza.',
+  'dashboard.floorplan.zones.draw': 'Disegna zona',
+  'dashboard.floorplan.zones.finish': 'Termina zona',
+  'dashboard.floorplan.zones.minPoints': 'Aggiungi almeno 3 punti per chiudere la zona.',
+  'dashboard.floorplan.zones.empty': 'Nessuna zona ancora. Disegnane una per iniziare.',
+  'dashboard.floorplan.zones.nameLabel': 'Nome zona',
+  'dashboard.floorplan.zones.delete': 'Elimina zona',
+  'dashboard.floorplan.zones.unlinked': 'Non collegata a una stanza',
+  'dashboard.floorplan.zones.defaultName': 'Zona {count}',
+  'dashboard.floorplan.zones.points.one': '{count} punto',
+  'dashboard.floorplan.zones.points.other': '{count} punti',
+  'dashboard.floorplan.devices.autoHint':
+    'Trascina i dispositivi per spostarli. Vengono associati alle zone in base alla loro stanza.',
+  'dashboard.floorplan.devices.searchPlaceholder': 'Cerca dispositivi',
+  'dashboard.floorplan.devices.empty': 'Nessun dispositivo trovato.',
+  'dashboard.floorplan.devices.remove': 'Rimuovi dalla planimetria',
 } as const satisfies Record<keyof typeof enMessages, string>;
