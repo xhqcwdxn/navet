@@ -3822,4 +3822,6 @@ export const daMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Søg enheder',
   'dashboard.floorplan.devices.empty': 'Ingen enheder fundet.',
   'dashboard.floorplan.devices.remove': 'Fjern fra plantegning',
+  'dashboard.floorplan.view.hint': 'Tryk på en enhed for at styre den. Hold nede for detaljer.',
+  'dashboard.floorplan.view.controlFailed': 'Kunne ikke styre enheden.',
 } as const;

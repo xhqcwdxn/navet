@@ -3846,4 +3846,7 @@ export const ptMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Pesquisar dispositivos',
   'dashboard.floorplan.devices.empty': 'Nenhum dispositivo encontrado.',
   'dashboard.floorplan.devices.remove': 'Remover da planta',
+  'dashboard.floorplan.view.hint':
+    'Toque num dispositivo para o controlar. Mantenha premido para ver detalhes.',
+  'dashboard.floorplan.view.controlFailed': 'Não foi possível controlar o dispositivo.',
 } as const;

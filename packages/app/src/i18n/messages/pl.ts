@@ -3841,4 +3841,7 @@ export const plMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Szukaj urządzeń',
   'dashboard.floorplan.devices.empty': 'Nie znaleziono urządzeń.',
   'dashboard.floorplan.devices.remove': 'Usuń z rzutu',
+  'dashboard.floorplan.view.hint':
+    'Dotknij urządzenie, aby nim sterować. Przytrzymaj, aby zobaczyć szczegóły.',
+  'dashboard.floorplan.view.controlFailed': 'Nie udało się sterować urządzeniem.',
 } as const;

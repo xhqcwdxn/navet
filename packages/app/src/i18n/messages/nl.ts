@@ -3873,4 +3873,7 @@ export const nlMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Apparaten zoeken',
   'dashboard.floorplan.devices.empty': 'Geen apparaten gevonden.',
   'dashboard.floorplan.devices.remove': 'Van plattegrond verwijderen',
+  'dashboard.floorplan.view.hint':
+    'Tik op een apparaat om het te bedienen. Houd ingedrukt voor details.',
+  'dashboard.floorplan.view.controlFailed': 'Kon het apparaat niet bedienen.',
 } as const;

@@ -3872,4 +3872,7 @@ export const esMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Buscar dispositivos',
   'dashboard.floorplan.devices.empty': 'No se encontraron dispositivos.',
   'dashboard.floorplan.devices.remove': 'Quitar del plano',
+  'dashboard.floorplan.view.hint':
+    'Toca un dispositivo para controlarlo. Mantén pulsado para ver los detalles.',
+  'dashboard.floorplan.view.controlFailed': 'No se pudo controlar el dispositivo.',
 } as const;

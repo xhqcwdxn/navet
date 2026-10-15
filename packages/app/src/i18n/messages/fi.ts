@@ -3839,4 +3839,7 @@ export const fiMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Hae laitteita',
   'dashboard.floorplan.devices.empty': 'Laitteita ei löytynyt.',
   'dashboard.floorplan.devices.remove': 'Poista pohjapiirroksesta',
+  'dashboard.floorplan.view.hint':
+    'Napauta laitetta ohjataksesi sitä. Pidä painettuna nähdäksesi tiedot.',
+  'dashboard.floorplan.view.controlFailed': 'Laitetta ei voitu ohjata.',
 } as const;

@@ -3545,4 +3545,6 @@ export const zhMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': '搜索设备',
   'dashboard.floorplan.devices.empty': '未找到设备。',
   'dashboard.floorplan.devices.remove': '从户型图移除',
+  'dashboard.floorplan.view.hint': '点按设备即可控制，长按查看详情。',
+  'dashboard.floorplan.view.controlFailed': '无法控制该设备。',
 } as const;

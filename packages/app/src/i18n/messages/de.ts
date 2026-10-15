@@ -3893,4 +3893,7 @@ export const deMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Geräte suchen',
   'dashboard.floorplan.devices.empty': 'Keine Geräte gefunden.',
   'dashboard.floorplan.devices.remove': 'Vom Grundriss entfernen',
+  'dashboard.floorplan.view.hint':
+    'Tippe auf ein Gerät, um es zu steuern. Halte gedrückt für Details.',
+  'dashboard.floorplan.view.controlFailed': 'Gerät konnte nicht gesteuert werden.',
 } as const;

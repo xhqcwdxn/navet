@@ -18,7 +18,6 @@ import { getDeviceTypeIcon } from '@navet/app/constants/device-type-icons';
 import { useAreaRooms, useDevices, useI18n, useMediaQuery, useTheme } from '@navet/app/hooks';
 import type { DeviceWithType } from '@navet/app/types/device.types';
 import { readFileAsDataUrl, validateImageFile } from '@navet/app/utils/image-upload';
-import { normalizeRoomName } from '@navet/app/utils/room-name';
 import {
   Check,
   Layers,
@@ -35,21 +34,14 @@ import { type ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } f
 import { toast } from 'sonner';
 import {
   type FloorplanPoint,
-  type FloorplanV1,
-  type FloorplanZone,
   type FloorplanZoneId,
   getDefaultFloorplanPlacement,
-  getZoneAutoPositions,
   MAX_FLOORPLAN_ZONE_POINTS,
   MIN_FLOORPLAN_ZONE_POINTS,
 } from '../floorplan';
+import { buildFloorplanMarkers } from '../floorplan-markers';
 import { useFloorplanStore } from '../floorplan-store';
-import {
-  FloorplanCanvas,
-  type FloorplanMarker,
-  getDeviceClass,
-  getDevicePicture,
-} from './floorplan-canvas';
+import { FloorplanCanvas, getDeviceClass, getDevicePicture } from './floorplan-canvas';
 
 const MAX_VISIBLE_DEVICES = 150;
 
@@ -63,58 +55,6 @@ function loadImageSize(source: string): Promise<{ width: number; height: number 
     image.onerror = () => reject(new Error('decode'));
     image.src = source;
   });
-}
-
-function buildMarkers(
-  floorplan: FloorplanV1,
-  devices: readonly DeviceWithType[],
-  zoneByRoomName: ReadonlyMap<string, FloorplanZone>
-): FloorplanMarker[] {
-  const markers: FloorplanMarker[] = [];
-  const explicitlyPlaced = new Set<string>();
-
-  for (const device of devices) {
-    const point = floorplan.placements[device.id];
-    if (point) {
-      markers.push({ entityId: device.id, point, device, auto: false });
-      explicitlyPlaced.add(device.id);
-    }
-  }
-
-  const autoDevicesByZoneId = new Map<FloorplanZoneId, DeviceWithType[]>();
-  for (const device of devices) {
-    if (explicitlyPlaced.has(device.id)) {
-      continue;
-    }
-    const zone = zoneByRoomName.get(normalizeRoomName(device.room));
-    if (!zone) {
-      continue;
-    }
-    const list = autoDevicesByZoneId.get(zone.id);
-    if (list) {
-      list.push(device);
-    } else {
-      autoDevicesByZoneId.set(zone.id, [device]);
-    }
-  }
-
-  for (const [zoneId, list] of autoDevicesByZoneId) {
-    const zone = floorplan.zones.find((entry) => entry.id === zoneId);
-    if (!zone) {
-      continue;
-    }
-    const positions = getZoneAutoPositions(zone.points, list.length);
-    list.forEach((device, index) => {
-      markers.push({
-        entityId: device.id,
-        point: positions[index] ?? { x: 0.5, y: 0.5 },
-        device,
-        auto: true,
-      });
-    });
-  }
-
-  return markers;
 }
 
 export interface FloorplanEditorDialogProps {
@@ -155,20 +95,7 @@ export function FloorplanEditorDialog({ isOpen, onOpenChange }: FloorplanEditorD
     }
   }, [isOpen]);
 
-  const zoneByRoomName = useMemo(() => {
-    const map = new Map<string, FloorplanZone>();
-    for (const zone of floorplan.zones) {
-      if (zone.roomId && !map.has(normalizeRoomName(zone.roomId))) {
-        map.set(normalizeRoomName(zone.roomId), zone);
-      }
-    }
-    return map;
-  }, [floorplan.zones]);
-
-  const markers = useMemo(
-    () => buildMarkers(floorplan, devices, zoneByRoomName),
-    [devices, floorplan, zoneByRoomName]
-  );
+  const markers = useMemo(() => buildFloorplanMarkers(floorplan, devices), [devices, floorplan]);
   const markerEntityIds = useMemo(
     () => new Set(markers.map((marker) => marker.entityId)),
     [markers]

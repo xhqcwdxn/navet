@@ -3810,4 +3810,6 @@ export const svMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Sök enheter',
   'dashboard.floorplan.devices.empty': 'Inga enheter hittades.',
   'dashboard.floorplan.devices.remove': 'Ta bort från planlösning',
+  'dashboard.floorplan.view.hint': 'Tryck på en enhet för att styra den. Håll ned för detaljer.',
+  'dashboard.floorplan.view.controlFailed': 'Kunde inte styra enheten.',
 } as const;

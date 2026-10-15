@@ -3895,4 +3895,7 @@ export const frMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Rechercher des appareils',
   'dashboard.floorplan.devices.empty': 'Aucun appareil trouvé.',
   'dashboard.floorplan.devices.remove': 'Retirer du plan',
+  'dashboard.floorplan.view.hint':
+    'Appuyez sur un appareil pour le contrôler. Maintenez pour les détails.',
+  'dashboard.floorplan.view.controlFailed': 'Impossible de contrôler cet appareil.',
 } as const;

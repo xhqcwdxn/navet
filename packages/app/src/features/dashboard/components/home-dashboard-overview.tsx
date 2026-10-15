@@ -12,6 +12,7 @@ import { useAccentColor, useI18n, useThemeMode } from '@navet/app/hooks';
 import { useSettingsStore } from '@navet/app/stores';
 import { settingsSelectors } from '@navet/app/stores/selectors';
 import { lazy, memo, Suspense, useMemo } from 'react';
+import { FloorplanViewSection } from '../floorplan/components/floorplan-view';
 import { useHomeEnergySummary } from '../hooks/use-home-energy-summary';
 import {
   type HomeDashboardOverviewProps,
@@ -101,9 +102,11 @@ const HomePresentationView = memo(function HomePresentationView({
     allCustomCards,
     homeLayout,
   });
+  const floorplanDevices = useMemo(() => Array.from(deviceMap.values()), [deviceMap]);
   return (
     <SummaryBarStack>
       {infoBadgeStrip}
+      <FloorplanViewSection devices={floorplanDevices} />
       <HomePresentation
         flowCards={flowCards}
         sections={sectionCards}

@@ -3852,4 +3852,7 @@ export const itMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Cerca dispositivi',
   'dashboard.floorplan.devices.empty': 'Nessun dispositivo trovato.',
   'dashboard.floorplan.devices.remove': 'Rimuovi dalla planimetria',
+  'dashboard.floorplan.view.hint':
+    'Tocca un dispositivo per controllarlo. Tieni premuto per i dettagli.',
+  'dashboard.floorplan.view.controlFailed': 'Impossibile controllare il dispositivo.',
 } as const satisfies Record<keyof typeof enMessages, string>;

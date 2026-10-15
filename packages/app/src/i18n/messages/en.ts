@@ -3804,4 +3804,6 @@ export const enMessages = {
   'dashboard.floorplan.devices.searchPlaceholder': 'Search devices',
   'dashboard.floorplan.devices.empty': 'No devices found.',
   'dashboard.floorplan.devices.remove': 'Remove from floorplan',
+  'dashboard.floorplan.view.hint': 'Tap a device to control it. Press and hold for details.',
+  'dashboard.floorplan.view.controlFailed': 'Could not control the device.',
 } as const;

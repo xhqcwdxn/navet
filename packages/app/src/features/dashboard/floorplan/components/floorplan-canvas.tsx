@@ -4,9 +4,12 @@ import { cn } from '@navet/app/components/ui/utils';
 import { getDeviceTypeIcon } from '@navet/app/constants/device-type-icons';
 import { useTheme } from '@navet/app/hooks';
 import type { DeviceWithType } from '@navet/app/types/device.types';
-import type { PointerEvent as ReactPointerEvent } from 'react';
+import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { FloorplanPoint, FloorplanV1, FloorplanZoneId } from '../floorplan';
+import type { FloorplanMarker } from '../floorplan-markers';
+
+export type { FloorplanMarker };
 
 export function getDevicePicture(device: DeviceWithType): string | null {
   const picture = (device as { entityPicture?: unknown }).entityPicture;
@@ -20,13 +23,6 @@ export function getDeviceClass(device: DeviceWithType): string | undefined {
 
 export type FloorplanCanvasMode = 'zone' | 'device';
 
-export interface FloorplanMarker {
-  entityId: string;
-  point: FloorplanPoint;
-  device: DeviceWithType;
-  auto: boolean;
-}
-
 export interface FloorplanCanvasProps {
   floorplan: FloorplanV1;
   mode: FloorplanCanvasMode;
@@ -35,12 +31,18 @@ export interface FloorplanCanvasProps {
   selectedZoneId: FloorplanZoneId | null;
   selectedEntityId: string | null;
   markers: readonly FloorplanMarker[];
+  // Read-only display surface: markers activate on tap and long-press instead of dragging.
+  readOnly?: boolean;
+  onActivateMarker?: (entityId: string) => void;
+  onLongPressMarker?: (entityId: string) => void;
   onAddDraftPoint: (point: FloorplanPoint) => void;
   onMovePlacement: (entityId: string, point: FloorplanPoint) => void;
   onCommitPlacement: (entityId: string, point: FloorplanPoint) => void;
   onSelectZone: (zoneId: FloorplanZoneId | null) => void;
   onSelectEntity: (entityId: string | null) => void;
 }
+
+const LONG_PRESS_DURATION_MS = 450;
 
 interface Size {
   width: number;
@@ -75,6 +77,9 @@ export function FloorplanCanvas({
   selectedZoneId,
   selectedEntityId,
   markers,
+  readOnly = false,
+  onActivateMarker,
+  onLongPressMarker,
   onAddDraftPoint,
   onMovePlacement,
   onCommitPlacement,
@@ -89,6 +94,8 @@ export function FloorplanCanvas({
   const [containerSize, setContainerSize] = useState<Size>({ width: 0, height: 0 });
   const [draftCursor, setDraftCursor] = useState<FloorplanPoint | null>(null);
   const activeDragRef = useRef<number | null>(null);
+  const longPressTimerRef = useRef<number | null>(null);
+  const longPressFiredRef = useRef(false);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -191,6 +198,51 @@ export function FloorplanCanvas({
     }
   };
 
+  const clearLongPressTimer = useCallback(() => {
+    if (longPressTimerRef.current !== null) {
+      window.clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => clearLongPressTimer, [clearLongPressTimer]);
+
+  const handleMarkerActivateDown = (
+    event: ReactPointerEvent<HTMLButtonElement>,
+    entityId: string
+  ) => {
+    if (event.button !== 0) {
+      return;
+    }
+    event.stopPropagation();
+    longPressFiredRef.current = false;
+    clearLongPressTimer();
+    longPressTimerRef.current = window.setTimeout(() => {
+      longPressTimerRef.current = null;
+      longPressFiredRef.current = true;
+      onLongPressMarker?.(entityId);
+    }, LONG_PRESS_DURATION_MS);
+  };
+
+  const handleMarkerActivate = (entityId: string) => {
+    if (longPressFiredRef.current) {
+      longPressFiredRef.current = false;
+      return;
+    }
+    onActivateMarker?.(entityId);
+  };
+
+  const handleMarkerActivateKeyDown = (
+    event: ReactKeyboardEvent<HTMLButtonElement>,
+    entityId: string
+  ) => {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return;
+    }
+    event.preventDefault();
+    onActivateMarker?.(entityId);
+  };
+
   if (!floorplan.image) {
     return null;
   }
@@ -238,7 +290,7 @@ export function FloorplanCanvas({
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full"
+          className={cn('absolute inset-0 h-full w-full', readOnly && 'pointer-events-none')}
         >
           {floorplan.zones.map((zone) => {
             const isSelected = zone.id === selectedZoneId;
@@ -310,12 +362,27 @@ export function FloorplanCanvas({
                 aria-label={device.name}
                 data-floorplan-marker
                 data-floorplan-marker-auto={auto ? 'true' : undefined}
-                onPointerDown={(event) => handleMarkerPointerDown(event, entityId)}
-                onPointerMove={(event) => handleMarkerPointerMove(event, entityId)}
-                onPointerUp={(event) => handleMarkerPointerUp(event, entityId)}
-                onPointerCancel={(event) => handleMarkerPointerUp(event, entityId)}
+                onPointerDown={
+                  readOnly
+                    ? (event) => handleMarkerActivateDown(event, entityId)
+                    : (event) => handleMarkerPointerDown(event, entityId)
+                }
+                onPointerMove={
+                  readOnly ? undefined : (event) => handleMarkerPointerMove(event, entityId)
+                }
+                onPointerUp={
+                  readOnly ? clearLongPressTimer : (event) => handleMarkerPointerUp(event, entityId)
+                }
+                onPointerCancel={readOnly ? clearLongPressTimer : undefined}
+                onPointerLeave={readOnly ? clearLongPressTimer : undefined}
+                onContextMenu={readOnly ? (event) => event.preventDefault() : undefined}
+                onClick={readOnly ? () => handleMarkerActivate(entityId) : undefined}
+                onKeyDown={
+                  readOnly ? (event) => handleMarkerActivateKeyDown(event, entityId) : undefined
+                }
                 className={cn(
-                  'absolute z-[2] flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 cursor-grab touch-none items-center justify-center overflow-hidden rounded-full border text-white active:cursor-grabbing',
+                  'absolute z-[2] flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 touch-none items-center justify-center overflow-hidden rounded-full border text-white',
+                  readOnly ? 'cursor-pointer' : 'cursor-grab active:cursor-grabbing',
                   auto ? 'border-dashed' : surface.borderStrong,
                   focusRing
                 )}
