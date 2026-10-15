@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.2
+
+## New features
+
+- Added a floor plan editor and a home overview floor plan that controls devices on tap.
+
 ## 0.18.0
 
 ## New features
