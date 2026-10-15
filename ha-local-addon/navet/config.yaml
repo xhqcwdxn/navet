@@ -1,0 +1,25 @@
+name: Navet
+version: "0.18.1"
+slug: navet_local
+description: Modern smart home dashboard for Home Assistant
+url: https://github.com/navet-app/navet
+arch:
+  - aarch64
+  - amd64
+startup: application
+init: false
+ingress: true
+ingress_port: 8099
+ports:
+  8080/tcp: null
+ports_description:
+  8080/tcp: Optional direct Navet web interface
+homeassistant_api: true
+panel_icon: mdi:hub
+panel_title: Navet
+map:
+  - addon_config:rw
+options:
+  allow_insecure_provider_tls: false
+schema:
+  allow_insecure_provider_tls: bool
