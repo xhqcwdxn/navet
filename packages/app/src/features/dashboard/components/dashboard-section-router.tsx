@@ -72,6 +72,12 @@ const AddEntityDialog = lazy(async () => {
   const module = await import('./add-entity-dialog');
   return { default: module.AddEntityDialog };
 });
+const FloorplanEditorDialog = lazy(async () => {
+  const module = await import(
+    '@navet/app/features/dashboard/floorplan/components/floorplan-editor'
+  );
+  return { default: module.FloorplanEditorDialog };
+});
 const EMPTY_MANAGEABLE_ROOMS_BY_PROVIDER_ID: ReturnType<
   typeof integrationSelectors.manageableRoomsByProviderId
 > = {};
@@ -128,6 +134,7 @@ function DashboardSectionRouterComponent({ controller }: DashboardSectionRouterP
   );
   const [isAddClimateEntityDialogOpen, setIsAddClimateEntityDialogOpen] = useState(false);
   const [isRoomManagementOpen, setIsRoomManagementOpen] = useState(false);
+  const [isFloorplanOpen, setIsFloorplanOpen] = useState(false);
   const [securityAddEntityRequestKey, setSecurityAddEntityRequestKey] = useState(0);
   const [mediaAddEntityRequestKey, setMediaAddEntityRequestKey] = useState(0);
   const {
@@ -551,10 +558,18 @@ function DashboardSectionRouterComponent({ controller }: DashboardSectionRouterP
             onToggleEditMode={onToggleEditMode}
             onAddEntity={headerAddAction}
             addEntityLabel={headerAddLabel}
+            onOpenFloorplan={() => setIsFloorplanOpen(true)}
+            floorplanLabel={t('dashboard.floorplan.open')}
             suppressEditActions={isEditMode}
             showCustomizeButton={false}
           />
         )}
+
+        {isFloorplanOpen ? (
+          <Suspense fallback={null}>
+            <FloorplanEditorDialog isOpen={isFloorplanOpen} onOpenChange={setIsFloorplanOpen} />
+          </Suspense>
+        ) : null}
 
         {isAllRooms(activeRoom) ? (
           <RenderProfiler id="HomeDashboardOverview">

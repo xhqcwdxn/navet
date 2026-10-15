@@ -3840,4 +3840,36 @@ export const esMessages = {
   'providerDetails.periods.month': 'Últimos 31 días',
   'providerDetails.sections.installations': 'Homeys disponibles',
   'providerDetails.current': 'Conexión actual',
+  'dashboard.floorplan.open': 'Plano',
+  'dashboard.floorplan.title': 'Plano',
+  'dashboard.floorplan.description':
+    'Sube un plano y dibuja zonas para que los dispositivos se asignen automáticamente.',
+  'dashboard.floorplan.upload': 'Subir plano',
+  'dashboard.floorplan.empty.title': 'Añade tu plano',
+  'dashboard.floorplan.empty.description':
+    'Sube una imagen de tu hogar y coloca dispositivos en ella.',
+  'dashboard.floorplan.image.invalid': 'Elige un archivo de imagen.',
+  'dashboard.floorplan.image.tooLarge':
+    'Esta imagen es demasiado grande. Elige un archivo más pequeño.',
+  'dashboard.floorplan.image.replace': 'Reemplazar imagen',
+  'dashboard.floorplan.image.remove': 'Quitar plano',
+  'dashboard.floorplan.mode.zones': 'Zonas',
+  'dashboard.floorplan.mode.devices': 'Dispositivos',
+  'dashboard.floorplan.zones.description':
+    'Dibuja un contorno alrededor de cada zona para vincularla a una habitación.',
+  'dashboard.floorplan.zones.draw': 'Dibujar zona',
+  'dashboard.floorplan.zones.finish': 'Terminar zona',
+  'dashboard.floorplan.zones.minPoints': 'Añade al menos 3 puntos para cerrar la zona.',
+  'dashboard.floorplan.zones.empty': 'Aún no hay zonas. Dibuja una para empezar.',
+  'dashboard.floorplan.zones.nameLabel': 'Nombre de la zona',
+  'dashboard.floorplan.zones.delete': 'Eliminar zona',
+  'dashboard.floorplan.zones.unlinked': 'Sin vincular a una habitación',
+  'dashboard.floorplan.zones.defaultName': 'Zona {count}',
+  'dashboard.floorplan.zones.points.one': '{count} punto',
+  'dashboard.floorplan.zones.points.other': '{count} puntos',
+  'dashboard.floorplan.devices.autoHint':
+    'Arrastra los dispositivos para moverlos. Se asignan a las zonas según su habitación.',
+  'dashboard.floorplan.devices.searchPlaceholder': 'Buscar dispositivos',
+  'dashboard.floorplan.devices.empty': 'No se encontraron dispositivos.',
+  'dashboard.floorplan.devices.remove': 'Quitar del plano',
 } as const;

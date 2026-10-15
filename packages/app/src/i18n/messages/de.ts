@@ -3861,4 +3861,36 @@ export const deMessages = {
   'providerDetails.periods.month': 'Letzte 31 Tage',
   'providerDetails.sections.installations': 'Homey-Geräte',
   'providerDetails.current': 'Aktuelle Verbindung',
+  'dashboard.floorplan.open': 'Grundriss',
+  'dashboard.floorplan.title': 'Grundriss',
+  'dashboard.floorplan.description':
+    'Lade einen Grundriss hoch und zeichne Bereiche ein, damit Geräte automatisch zugewiesen werden.',
+  'dashboard.floorplan.upload': 'Grundriss hochladen',
+  'dashboard.floorplan.empty.title': 'Grundriss hinzufügen',
+  'dashboard.floorplan.empty.description':
+    'Lade ein Bild deines Zuhauses hoch und platziere Geräte darauf.',
+  'dashboard.floorplan.image.invalid': 'Wähle eine Bilddatei aus.',
+  'dashboard.floorplan.image.tooLarge': 'Dieses Bild ist zu groß. Wähle eine kleinere Datei.',
+  'dashboard.floorplan.image.replace': 'Bild ersetzen',
+  'dashboard.floorplan.image.remove': 'Grundriss entfernen',
+  'dashboard.floorplan.mode.zones': 'Bereiche',
+  'dashboard.floorplan.mode.devices': 'Geräte',
+  'dashboard.floorplan.zones.description':
+    'Zeichne eine Umrandung um jeden Bereich, um ihn mit einem Raum zu verbinden.',
+  'dashboard.floorplan.zones.draw': 'Bereich zeichnen',
+  'dashboard.floorplan.zones.finish': 'Bereich abschließen',
+  'dashboard.floorplan.zones.minPoints':
+    'Füge mindestens 3 Punkte hinzu, um den Bereich zu schließen.',
+  'dashboard.floorplan.zones.empty': 'Noch keine Bereiche. Zeichne einen, um zu beginnen.',
+  'dashboard.floorplan.zones.nameLabel': 'Bereichsname',
+  'dashboard.floorplan.zones.delete': 'Bereich löschen',
+  'dashboard.floorplan.zones.unlinked': 'Keinem Raum zugeordnet',
+  'dashboard.floorplan.zones.defaultName': 'Bereich {count}',
+  'dashboard.floorplan.zones.points.one': '{count} Punkt',
+  'dashboard.floorplan.zones.points.other': '{count} Punkte',
+  'dashboard.floorplan.devices.autoHint':
+    'Ziehe Geräte, um sie zu verschieben. Geräte werden über ihren Raum den Bereichen zugeordnet.',
+  'dashboard.floorplan.devices.searchPlaceholder': 'Geräte suchen',
+  'dashboard.floorplan.devices.empty': 'Keine Geräte gefunden.',
+  'dashboard.floorplan.devices.remove': 'Vom Grundriss entfernen',
 } as const;

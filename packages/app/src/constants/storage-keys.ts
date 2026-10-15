@@ -85,6 +85,7 @@ export const STORE_STORAGE_KEYS = {
   customCards: 'navet-custom-cards',
   entityRoomOverrides: 'navet-entity-room-overrides',
   lightPresetSettings: 'navet-light-preset-settings',
+  floorplan: 'navet-floorplan',
 } as const;
 
 export const LEGACY_STORE_STORAGE_KEYS = {

@@ -3863,4 +3863,36 @@ export const frMessages = {
   'providerDetails.periods.month': 'Derniers 31 jours',
   'providerDetails.sections.installations': 'Homeys disponibles',
   'providerDetails.current': 'Connexion actuelle',
+  'dashboard.floorplan.open': "Plan d'étage",
+  'dashboard.floorplan.title': "Plan d'étage",
+  'dashboard.floorplan.description':
+    "Importez un plan d'étage, puis dessinez des zones pour que les appareils soient assignés automatiquement.",
+  'dashboard.floorplan.upload': 'Importer un plan',
+  'dashboard.floorplan.empty.title': "Ajouter votre plan d'étage",
+  'dashboard.floorplan.empty.description':
+    'Importez une image de votre logement, puis placez-y des appareils.',
+  'dashboard.floorplan.image.invalid': 'Choisissez un fichier image.',
+  'dashboard.floorplan.image.tooLarge':
+    'Cette image est trop volumineuse. Choisissez un fichier plus petit.',
+  'dashboard.floorplan.image.replace': "Remplacer l'image",
+  'dashboard.floorplan.image.remove': 'Supprimer le plan',
+  'dashboard.floorplan.mode.zones': 'Zones',
+  'dashboard.floorplan.mode.devices': 'Appareils',
+  'dashboard.floorplan.zones.description':
+    'Dessinez un contour autour de chaque zone pour la relier à une pièce.',
+  'dashboard.floorplan.zones.draw': 'Dessiner une zone',
+  'dashboard.floorplan.zones.finish': 'Terminer la zone',
+  'dashboard.floorplan.zones.minPoints': 'Ajoutez au moins 3 points pour fermer la zone.',
+  'dashboard.floorplan.zones.empty': 'Aucune zone pour le moment. Dessinez-en une pour commencer.',
+  'dashboard.floorplan.zones.nameLabel': 'Nom de la zone',
+  'dashboard.floorplan.zones.delete': 'Supprimer la zone',
+  'dashboard.floorplan.zones.unlinked': 'Non lié à une pièce',
+  'dashboard.floorplan.zones.defaultName': 'Zone {count}',
+  'dashboard.floorplan.zones.points.one': '{count} point',
+  'dashboard.floorplan.zones.points.other': '{count} points',
+  'dashboard.floorplan.devices.autoHint':
+    'Faites glisser les appareils pour les déplacer. Ils sont associés aux zones selon leur pièce.',
+  'dashboard.floorplan.devices.searchPlaceholder': 'Rechercher des appareils',
+  'dashboard.floorplan.devices.empty': 'Aucun appareil trouvé.',
+  'dashboard.floorplan.devices.remove': 'Retirer du plan',
 } as const;
